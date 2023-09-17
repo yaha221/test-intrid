@@ -41,6 +41,7 @@ AppAsset::register($this);
             ['label' => Yii::$app->user->identity->username,
             'items' => [
                 ['label' => 'Пользователи', 'url' => ['/admin/users'], 'visible' => Yii::$app->user->can('admin')],
+                ['label' => 'Обувь', 'url' => ['/shoe'],],
                 ['label' => 'Выход', 'url' => ['/user/security/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ],
             ]

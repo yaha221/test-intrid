@@ -24,7 +24,8 @@
         "kartik-v/yii2-grid": "dev-master",
         "kartik-v/yii2-widget-switchinput": "dev-master",
         "rmrevin/yii2-fontawesome": "2.10.*",
-        "tlr/html-table-builder": "^1.1"
+        "tlr/html-table-builder": "^1.1",
+        "yiithings/yii2-dotenv": "*"
     },
     "require-dev": {
         "kartik-v/yii2-date-range": "dev-master",

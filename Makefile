@@ -41,7 +41,7 @@ yii-migrate:
 	$(MAKE) app-php-cli-exec cmd="./yii migrate"
 
 chown:
-	@$(MAKE) app-php-cli-exec cmd="chown 1000:1000 -R web/assets"
+	@$(MAKE) app-php-cli-exec cmd="chown 1000:1000 -R ./"
 
 yii-rbac-init:
 	$(MAKE) app-php-cli-exec cmd="./yii my-rbac/init"

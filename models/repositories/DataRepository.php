@@ -194,28 +194,66 @@ class DataRepository
 
     public function findShoeSize() {
         $query = (new Query())
-        ->select(['size'])
+        ->select(['id','size'])
         ->from('shoe_size')
         ->all();
+
+        $result = ArrayHelper::map($query,'id','size');
         
-        return $query;
+        return $result;
     }
 
     public function findShoeColor() {
         $query = (new Query())
-        ->select(['color'])
+        ->select(['id','color'])
         ->from('shoe_color')
         ->all();
         
-        return $query;
+        $result = ArrayHelper::map($query,'id','color');
+
+        return $result;
     }
 
     public function findShoeModel() {
         $query = (new Query())
-        ->select(['model'])
+        ->select(['id','model'])
         ->from('shoe_model')
         ->all();
+
+        $result = ArrayHelper::map($query,'id','model');
         
-        return $query;
+        return $result;
+    }
+
+    /**
+     * Находит модель обуви совпадающую с введённым в форме
+     * 
+     * @param string $model
+     * @return array имена
+     */
+    public function findShoeByModel($model)
+    {
+        $query = (new Query())
+            ->select('id, model AS text')
+            ->from('shoe_model')
+            ->where(['like', 'model', $model]);
+
+        return $query->createCommand()->queryAll();
+    }
+
+    /**
+     * Находит цвет обуви совпадающий с введённым в форме
+     * 
+     * @param string $color
+     * @return array имена
+     */
+    public function findShoeByColor($color)
+    {
+        $query = (new Query())
+            ->select('id, color AS text')
+            ->from('shoe_color')
+            ->where(['like', 'color', $color]);
+
+        return $query->createCommand()->queryAll();
     }
 }

@@ -3,13 +3,6 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-use dvizh\cart\widgets\BuyButton;
-use dvizh\cart\widgets\TruncateButton;
-use dvizh\cart\widgets\CartInformer;
-use dvizh\cart\widgets\ElementsList;
-use dvizh\cart\widgets\DeleteButton;
-use dvizh\cart\widgets\ChangeCount;
-use dvizh\cart\widgets\ChangeOptions;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -61,12 +54,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 <?php Pjax::end(); ?>
-    <?php
-        BuyButton::widget([
-            'model' => $dataProvider,
-            'text' => 'Заказать',
-            'htmlTag' => 'a',
-        ])
-    ?>
 
 </div>

@@ -1,0 +1,48 @@
+version: '3.7'
+services:
+
+  shop-cart-php-fpm:
+    image: ${REGISTRY}/${PHP_FMP_CONTAINER_NAME}:${IMAGE_TAG}
+    volumes:
+      - $PWD:/app
+    depends_on:
+      - shop-cart-mysql
+    networks:
+    - intrid-network
+      
+  shop-cart-php-cli:
+    image: ${REGISTRY}/${PHP_CLI_CONTAINER_NAME}:${IMAGE_TAG}
+    volumes:
+      - $PWD:/app
+    networks:
+    - intrid-network
+    tty: true
+
+  shop-cart-nginx:
+    image: ${REGISTRY}/${NGINX_CONTAINER_NAME}:${IMAGE_TAG}
+    ports:
+      - ${APP_WEB_PORT}:80
+    volumes:
+      - $PWD:/app
+    depends_on:
+      - shop-cart-php-fpm
+    networks:
+    - intrid-network
+
+  shop-cart-mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    command: --default-authentication-plugin=caching_sha2_password
+    networks:
+    - intrid-network
+
+networks:
+  intrid-network:
+    driver: bridge

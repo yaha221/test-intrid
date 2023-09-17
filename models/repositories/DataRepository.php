@@ -192,196 +192,30 @@ class DataRepository
        return $result;
    }
 
-    /**
-     * Находит все месяца
-     * 
-     * @return array месяца
-     */
-    public function findMonths()
-    {
+    public function findShoeSize() {
         $query = (new Query())
-            ->select(['*'])
-            ->from('month')
-            ->all();
-
-        return $query;
-    }
-
-    /**
-     * Находит все тоннажи
-     * 
-     * @return array тоннажи
-     */
-    public function findTonnages()
-    {
-        $query = (new Query())
-            ->select(['*'])
-            ->from('tonnage')
-            ->all();
-
-        return $query;
-    }
-
-    /**
-     * Находит все типы
-     * 
-     * @return array типы
-     */
-    public function findTypes() 
-    {
-        $query = (new Query())
-            ->select(['*'])
-            ->from('type')
-            ->all();
-
-        return $query;
-    }
-
-    /**
-     * Находит месяц по номеру
-     * 
-     * @param integer $id
-     * @return array месяц
-     */
-    public function findMonthById( $id)
-    {
-        $query = (new Query())
-            ->select(['*'])
-            ->from('month')
-            ->where(['id' => $id])
-            ->one();
+        ->select(['size'])
+        ->from('shoe_size')
+        ->all();
         
         return $query;
     }
 
-    /**
-     * Находит тоннаж по номеру
-     * 
-     * @param integer $id
-     * @return array тоннаж
-     */
-    public function findTonnageById($id) 
-    {
+    public function findShoeColor() {
         $query = (new Query())
-            ->select(['*'])
-            ->from('tonnage')
-            ->where(['id' => $id])
-            ->one();
+        ->select(['color'])
+        ->from('shoe_color')
+        ->all();
         
         return $query;
     }
 
-    /**
-     * Находит тип по номеру
-     * 
-     * @param integer $id
-     * @return array тип
-     */
-    public function findTypeById($id)
-    {
+    public function findShoeModel() {
         $query = (new Query())
-            ->select(['*'])
-            ->from('type')
-            ->where(['id' => $id])
-            ->one();
+        ->select(['model'])
+        ->from('shoe_model')
+        ->all();
         
-        return $query;
-    }
-
-    /**
-     * Находит месяц по имени
-     * 
-     * @param string $name
-     * @return array месяц
-     */
-    public function findMonthByName($name)
-    {
-        $query = (new Query())
-            ->select(['id', 'name'])
-            ->from('month')
-            ->where(['name' => $name])
-            ->one();
-        
-        return $query;
-    }
-
-    /**
-     * Находит тоннаж по значению
-     * 
-     * @param integer $value
-     * @return array тоннаж
-     */
-    public function findTonnageByValue($value)
-    {
-        $query = (new Query())
-            ->select(['id', 'value'])
-            ->from('tonnage')
-            ->where(['value' => $value])
-            ->one();
-        
-        return $query;
-    }
-
-    /**
-     * Находит тип по имени
-     * 
-     * @param string $name
-     * @return array тип
-     */
-    public function findTypeByName($name)
-    {
-        $query = (new Query())
-            ->select(['id', 'name'])
-            ->from('type')
-            ->where(['name' => $name])
-            ->one();
-        
-        return $query;
-    }
-
-    /**
-     * Находит весь прайс
-     * 
-     * @return array прайс
-     */
-    public function findCostAll()
-    {
-        $query = (new Query())
-            ->select([
-                'c.*',
-                'monthName' => 'm.name',
-                'tonnageValue' => 'tn.value',
-                'typeName' => 'tp.name',
-                ])
-            ->from(['c' => 'cost'])
-            ->leftJoin(['m' => 'month'], 'm.id = c.month_id')
-            ->leftJoin(['tn' => 'tonnage'], 'tn.id = c.tonnage_id')
-            ->leftJoin(['tp' => 'type'], 'tp.id = c.type_id')
-            ->all();
-
-        return $query;
-    }
-
-    /**
-     * Находит цену по индексам
-     * 
-     * @param integer $monthId
-     * @param integer $tonnageId
-     * @param integer $typeId
-     * @return array цену
-     */
-    public function findCostOneByParams($monthId, $tonnageId, $typeId) 
-    {
-        $query = (new Query())
-            ->select(['*'])
-            ->from(['cost'])
-            ->where([
-                'month_id' => $monthId,
-                'tonnage_id' => $tonnageId,
-                'type_id' => $typeId,
-                ])
-            ->one();
-
         return $query;
     }
 }

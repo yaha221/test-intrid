@@ -32,14 +32,14 @@ class m230106_113347_user extends Migration
         $this->insert('user', [
             'username' => 'Админ',
             'auth_key' => 'admin',
-            'password_hash' => '$2y$13$yDRGiLCNaoaIsEgSiwYC9e/XNs1plY9t5DO4AkNmrgoJOlH7c8Adi',
+            'password_hash' => '$2y$13$vDIscNfHFoSYC3yatd/Xmuz1Ld/kxJhyHl5eF4UbHLj2pZ7H9RKSi',
             'email' => 'admin@admin.a',
         ]);
 
         $this->insert('user', [
             'username' => 'Пользователь',
             'auth_key' => 'user',
-            'password_hash' => '$2y$13$yDRGiLCNaoaIsEgSiwYC9e/XNs1plY9t5DO4AkNmrgoJOlH7c8Adi',
+            'password_hash' => '$2y$13$vDIscNfHFoSYC3yatd/Xmuz1Ld/kxJhyHl5eF4UbHLj2pZ7H9RKSi',
             'email' => 'user@user.u',
         ]);
     }
